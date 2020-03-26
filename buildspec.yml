@@ -1,0 +1,12 @@
+version: 0.2         
+phases:
+  install:
+    runtime-versions:
+      python: 3.7
+  build:
+    commands:
+      - make _build
+artifacts:
+  files:
+    - output/lib.zip
+  name: myname-$(date +%Y-%m-%d) 
