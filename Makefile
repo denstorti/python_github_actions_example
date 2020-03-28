@@ -1,5 +1,8 @@
 DOCKER_COMPOSE_PYTHON = docker-compose run --rm python bash
 DOCKER_COMPOSE_AWS = docker-compose run --rm aws
+BUCKET_NAME ?= python-github-actions-example
+
+.EXPORT_ALL_VARIABLES: # need for setting default values
 
 all: build package run
 
