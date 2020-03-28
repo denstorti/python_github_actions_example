@@ -1,15 +1,25 @@
 DOCKER_COMPOSE_PYTHON = docker-compose run --rm python bash
+DOCKER_COMPOSE_AWS = docker-compose run --rm aws
 
 all: build package run
 
-build: clean
+build: clean 
 	${DOCKER_COMPOSE_PYTHON} ./scripts/build.sh
 
 package:
 	${DOCKER_COMPOSE_PYTHON} ./scripts/package.sh
 
-run:
-	env FLASK_APP=src/app.py flask run
+publish:
+	${DOCKER_COMPOSE_AWS} ./scripts/publish.sh
+
+run: package
+	${DOCKER_COMPOSE_PYTHON} ./scripts/run.sh
+
+shellPython: 
+	${DOCKER_COMPOSE_PYTHON}
+
+shellAWS: 
+	${DOCKER_COMPOSE_AWS}
 
 _build:
 	./scripts/build.sh

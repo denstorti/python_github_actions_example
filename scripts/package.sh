@@ -1,15 +1,14 @@
+set -x
 
 OUTPUT_DIR=$(pwd)/output
 
 apt update
 apt install zip
 
-cd ./venv/lib/python3.7/site-packages
+cd ${OUTPUT_DIR}/libs
+zip -r ${OUTPUT_DIR}/code.zip .
+rm -rf cd ${OUTPUT_DIR}/libs
+
+cd ${OUTPUT_DIR}/../src
 pwd
-
-zip -r lib.zip .
-mv lib.zip ${OUTPUT_DIR}/
-
-# cd ${OUTPUT_DIR}
-# pwd
-# zip -r lib.zip ../*
+zip -r9 ${OUTPUT_DIR}/code.zip . -x '__py*'
